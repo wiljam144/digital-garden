@@ -31,6 +31,10 @@ If you, for some reason want to browse this website locally:
 3. Run webserver
 `npm run start`
 
+## Validation
+
+There's also a validation script, to use it use `npm run validate`, right now it's painfully slow.
+
 Note that you need to have python3 installed.
 Also, some paths might be broken because GitHub Pages requires me to fetch from
 `digital-garden/<path>` instead of just `/<path>`.
