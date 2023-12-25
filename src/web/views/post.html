@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wiljam's Digital Garden: {{title}}</title>
+
+    <link rel="stylesheet" href="/digital-garden/static/post.css">
+    <link rel="icon" type="image/x-icon" href="/digital-garden/assets/img/favicon.png">
+
+    <link rel="stylesheet" href="/digital-garden/lib/katex/katex.min.css">
+    <script src="/digital-garden/lib/katex/katex.min.js"></script>
+
+    <link rel="stylesheet" href="/digital-garden/lib/hljs/black-metal-dark-funeral.min.css">
+
+</head>
+<body>
+    <div id="topbar">
+        <div id="logo">
+            <div id="bar"></div>
+            <div id="text">Wiljam's <br>Digital Garden</div>
+        </div>
+        <div id="links">
+            <a href="/digital-garden/changelog.html">Changelog</a>
+            <a href="/digital-garden/rss.xml">RSS</a><br id="break">
+            <a href="https://www.github.com/wiljam144">GitHub</a>
+            <a href="mailto:wiljam1444@gmail.com?subject=Contact">Mail</a>
+        </div>
+        <div id="menu-btn" onclick="menu_btn()"><img id="menu-img" src="/digital-garden/static/menu.svg"></div>
+        <div class="vline"></div>
+    </div>
+
+
+    <div id="page">
+        <div id="search">
+            <div id="search-box">
+                <div id="search-text">Search:</div>
+                <input type="text" id="search-input" placeholder="Search...">
+            </div>
+            <div id="results">
+
+            </div>
+        </div>
+
+        <div id="content">
+            {{content}}
+        </div>
+    </div>
+
+    <script defer src="/digital-garden/static/post.js"></script>
+</body>
+</html>

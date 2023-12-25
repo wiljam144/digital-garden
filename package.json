@@ -1,0 +1,18 @@
+{
+    "type": "module",
+    "scripts": {
+        "validate": "node ./src/build/validation/validation.js",
+        "build": "node ./src/build/main.js",
+        "start": "cd build && python -m http.server",
+        "dev": "npm run build && npm run start"
+    },
+    "dependencies": {
+        "highlight.js": "^11.9.0",
+        "marked": "^11.1.0",
+        "marked-highlight": "^2.1.0",
+        "marked-katex-extension": "^4.0.5",
+        "marked-smartypants": "^1.1.5",
+        "nodehun": "^3.0.2",
+        "write-good": "^1.0.8"
+    }
+}
