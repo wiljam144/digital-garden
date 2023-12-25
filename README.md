@@ -33,7 +33,9 @@ If you, for some reason want to browse this website locally:
 
 ## Validation
 
-There's also a validation script, to use it use `npm run validate`, right now it's painfully slow.
+There's also a validation script. I use it for finding typos, dead links and grammar errors.
+Right now it's painfully slow due to it analyzing every word in the notes and every sentence.
+To run it use `npm run validate`.
 
 Note that you need to have python3 installed.
 Also, some paths might be broken because GitHub Pages requires me to fetch from
