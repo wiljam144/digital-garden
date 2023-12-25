@@ -1,8 +1,0 @@
-content/private/
-
-build/
-!src/build/
-
-node_modules/
-
-package-lock.json
