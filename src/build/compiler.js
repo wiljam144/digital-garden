@@ -17,7 +17,7 @@ function parse_links(text, files, path) {
         }
         text = text.replace(
             match[0],
-            `[${match[1]}](${path}/${files.get(match[1]).path.slice(0, -2) + "html"})`,
+            `[${match[1]}](/digital-garden/${files.get(match[1]).path.slice(0, -2) + "html"})`,
         )
     }
 
