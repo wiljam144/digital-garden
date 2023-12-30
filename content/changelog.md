@@ -2,7 +2,8 @@
 
 ## December 2023
 
-- Dev: Validation was added, it checks for: grammar, spelling and dead links.
-- Logo in README.md was added.
-- RSS was added.
-- Changelog was added.
+- Wrote & Added Setup page.
+- *Dev*: added validation, it checks for: grammar, spelling and dead links.
+- Added logo in README.md.
+- Added RSS.
+- Added Changelog.

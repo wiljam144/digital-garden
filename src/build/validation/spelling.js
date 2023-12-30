@@ -27,10 +27,21 @@ function find_word_position(text, target_word) {
 function prepare_nodehun() {
     const affix = fs.readFileSync("./src/build/validation/en_GB.aff");
     const dictionary = fs.readFileSync("./src/build/validation/en_GB.dic");
-    
+
     const nodehun = new Nodehun(affix, dictionary);
 
-    nodehun.addSync("md");
+    const additions = [
+        "md",
+        "th",
+        "chonky",
+        "XMonad",
+        "div",
+        "config",
+    ];
+
+    additions.forEach(elem => {
+        nodehun.addSync(elem);
+    });
 
     return nodehun;
 }

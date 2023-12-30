@@ -37,7 +37,7 @@ export function validate_grammar(text, file) {
 
     let suggestions = [];
     for (const sentence of sentences) {
-        const suggestion = writeGood(sentence + ".", { passive: false })
+        const suggestion = writeGood(sentence + ".", { whitelist: ["all of"] })
         suggestions = suggestions.concat(suggestion);
     }
 
