@@ -3,7 +3,6 @@ import fs from "fs";
 export function create_sitemap(files) {
     // separated into two maps because I don't know if the second one will be used
     let sitemap = {};
-    let contentmap = {}
 
     for (const [key, value] of files) {
         if (value.extension == "md") {
