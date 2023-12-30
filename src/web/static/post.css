@@ -48,10 +48,18 @@ html {
 
 h1, h2, h3, h4, h5, h6 {
     width: 100%;
-    border-bottom: 1px dotted var(--h1-border-color);
 
     font-family: "Crimson Text", serif;
     font-weight: bold;
+}
+
+h1, h2 {
+    border-bottom: 1px dotted var(--h1-border-color);
+}
+
+h3, h4, h5, h6 {
+    text-decoration-style: dotted;
+    text-decoration-color: var(--h1-border-color);
 }
 
 ul {
