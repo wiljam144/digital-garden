@@ -2,7 +2,7 @@ import hljs from "highlight.js";
 import fs from "fs";
 
 function fill_other_template(filename, content, extension) {
-    const code_extensions = ["js"]
+    const code_extensions = ["js", "el"]
 
     if (code_extensions.indexOf(extension) > -1) {
         const template = fs.readFileSync("./src/web/views/code.html", "utf-8");

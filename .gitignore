@@ -1,8 +1,9 @@
-content/private/
+private/
 
 build/
 !src/build/
 
 node_modules/
+.obsidian/
 
 package-lock.json

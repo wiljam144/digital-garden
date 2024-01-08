@@ -9,7 +9,7 @@ into these nice posts in the [[Digital Garden]] (See More in [[Workflow]]).
 
 I am running Arch Linux as my operating system. I like it because it's lightweight,
 and has newest package versions (most of the time). My window manager of choice is XMonad,
-I also have KDE Plasma installed because it's my favourite [[Desktop Environment]].
+I also have KDE Plasma [[Desktop Environment]] that I sometimes use.
 The desktop is connected to two displays, one placed horizontally and one vertically.
 
 ### Specs
@@ -18,8 +18,6 @@ The desktop is connected to two displays, one placed horizontally and one vertic
 - GPU: NVIDIA GeForce GTX 1050 Ti
 - Memory: 8GB
 - 1TB storage (512GB SSD, 512GB HDD)
-
-I would list other specs, but I do not think they are important or I don't remember them.
 
 ## MacBook Air M2
 
@@ -38,5 +36,4 @@ needs to be handwritten.
 
 ## Emacs
 
-I think this deserves it's own subsection of this page. I am working on refactoring
-and cleaning up my config when I am finished, it will be published here.
+My preferred text editor is Emacs, mainly because I can tailor it just to my needs. My config is [here]("/digital-garden/code/init.el.html")

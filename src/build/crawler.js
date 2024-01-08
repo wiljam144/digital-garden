@@ -22,7 +22,7 @@ export function generate_file_map(dir) {
     const files = new Map();
 
     files_list.forEach(file => {
-        if (file.includes("private")) {
+        if (file.includes("private") || file.includes(".obsidian")) {
             return;
         }
 

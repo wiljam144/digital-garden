@@ -8,9 +8,6 @@ export function create_sitemap(files) {
         if (value.extension == "md") {
             sitemap[key] = value.path.slice(0, -2) + "html";
         }
-        else {
-            sitemap[`/${key}`] = value.path + ".html";
-        }
     }
 
     fs.writeFileSync("./build/static/navigation.json", JSON.stringify(sitemap));
