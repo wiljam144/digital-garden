@@ -36,4 +36,4 @@ needs to be handwritten.
 
 ## Emacs
 
-My preferred text editor is Emacs, mainly because I can tailor it just to my needs. My config is [here]("/digital-garden/code/init.el.html")
+My preferred text editor is Emacs, mainly because I can tailor it just to my needs. My config is [here](./code/init.el.html)
