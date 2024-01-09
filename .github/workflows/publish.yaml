@@ -12,8 +12,11 @@ jobs:
       - name: Check Out
         uses: actions/checkout@v1
 
+      - name: Update apt
+        run: sudo apt update
+
       - name: install nodejs
-        run: sudo apt-get install nodejs
+        run: sudo apt install nodejs
 
       - name: install packages
         run: npm install
