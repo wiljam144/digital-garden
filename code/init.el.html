@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wiljam's Digital Garden: /code/init.el</title>
+
+    <link rel="stylesheet" href="/digital-garden/static/post.css">
+    <link rel="icon" type="image/x-icon" href="/assets/img/favicon.png">
+
+    <link rel="stylesheet" href="/digital-garden/lib/katex/katex.min.css">
+    <script src="/digital-garden/lib/katex/katex.min.js"></script>
+
+    <link rel="stylesheet" href="/digital-garden/lib/hljs/black-metal-dark-funeral.min.css">
+</head>
+<body>
+    <div id="topbar">
+        <div id="logo">
+            <div id="bar"></div>
+            <div id="text">Wiljam's <br>Digital Garden</div>
+        </div>
+        <div id="links">
+            <a href="/digital-garden/changelog.html">Changelog</a>
+            <a target="_blank" href="/digital-garden/rss.xml">RSS</a><br id="break">
+            <a target="_blank" href="https://www.github.com/wiljam144">GitHub</a>
+            <a href="mailto:wiljam1444@gmail.com?subject=Contact">Mail</a>
+        </div>
+        <div id="menu-btn" onclick="menu_btn()"><img id="menu-img" src="/digital-garden/static/menu.svg"></div>
+        <div class="vline"></div>
+    </div>
+
+
+    <div id="page">
+        <div id="search">
+            <div id="search-box">
+                <div id="search-text">Search:</div>
+                <input type="text" id="search-input" placeholder="Search...">
+            </div>
+            <div id="results">
+
+            </div>
+        </div>
+
+        <div id="content">
+            <h1>/code/init.el</h1>
+            <pre><code class="hljs"><span class="hljs-comment">;; -*- coding: utf-8; lexical-binding: t -*-</span>
+
+<span class="hljs-comment">;; Credentials are in a separate file so that the don&#x27;t end up in public repo.</span>
+(<span class="hljs-name">load</span> <span class="hljs-string">&quot;~/.config/emacs/credentials.el&quot;</span>)
+
+<span class="hljs-comment">;; Squeeze out some perfomance.</span>
+(<span class="hljs-name">setq</span> gc-cons-threshold <span class="hljs-number">100000000</span>)
+(<span class="hljs-name">setq</span> max-specpdl-size <span class="hljs-number">5000</span>)
+
+<span class="hljs-comment">;; Initalize package</span>
+(<span class="hljs-name">require</span> &#x27;package)
+(<span class="hljs-name">add-to-list</span> &#x27;package-archives
+             &#x27;(<span class="hljs-string">&quot;melpa&quot;</span> . <span class="hljs-string">&quot;https://melpa.org/packages/&quot;</span>))
+(<span class="hljs-name">package-initialize</span>)
+
+<span class="hljs-comment">;; Disable the &quot;More Information about Emacs System&quot; startup message.</span>
+(<span class="hljs-name">defun</span> display-startup-echo-area-message ()
+  (<span class="hljs-name">message</span> <span class="hljs-string">&quot;&quot;</span>))
+
+(<span class="hljs-name">defun</span> wl/random-choice (<span class="hljs-name">items</span>)
+  (<span class="hljs-name">nth</span> (<span class="hljs-name">random</span> (<span class="hljs-name">length</span> items)) items))
+
+(<span class="hljs-name">setq</span> scratch-messages &#x27;(<span class="hljs-string">&quot;;; Approved by The Alphabet Bois\n&quot;</span>
+                         <span class="hljs-string">&quot;;; NSA Inside\n&quot;</span>
+                         <span class="hljs-string">&quot;;; Not Copyrighted by Anyone 1432-1785\n&quot;</span>
+                         <span class="hljs-string">&quot;;; NSA Controlled Since 1952\n&quot;</span>
+                         <span class="hljs-string">&quot;;; Spyware Embedded Deep Inside\n&quot;</span>
+                         <span class="hljs-string">&quot;;; UwU\n&quot;</span>
+                         <span class="hljs-string">&quot;;; &lt;3\n&quot;</span>
+                         <span class="hljs-string">&quot;;; Quicksort is Quick\n&quot;</span>
+                         <span class="hljs-string">&quot;;; I Have a Smooth Brain\n&quot;</span>
+                         <span class="hljs-string">&quot;;; I Probably Have Bipolar Disorder\n&quot;</span>))
+
+(<span class="hljs-name">setq</span> quit-messages &#x27;(<span class="hljs-string">&quot;You will regret this. &quot;</span>
+                      <span class="hljs-string">&quot;Come on, do it, see if I care. &quot;</span>
+                      <span class="hljs-string">&quot;Get out of here and go back to your boring programs. &quot;</span>))
+
+(<span class="hljs-name">setq</span> initial-scratch-message (<span class="hljs-name">wl/random-choice</span> scratch-messages))
+
+(<span class="hljs-name">add-hook</span> &#x27;kill-emacs-query-functions
+          (<span class="hljs-name">lambda</span> () (<span class="hljs-name">y-or-n-p</span> (<span class="hljs-name">wl/random-choice</span> quit-messages)))
+          &#x27;append)
+
+<span class="hljs-comment">;; Improve some emacs defaults.</span>
+(<span class="hljs-name">setq</span>
+ inhibit-startup-screen <span class="hljs-literal">t</span>
+ intial-scratch-message <span class="hljs-literal">nil</span>
+ sentence-end-double-space <span class="hljs-literal">nil</span>
+ ring-bell-function &#x27;ignore
+ save-interprogram-paste-before-kill <span class="hljs-literal">t</span>
+ use-dialog-box <span class="hljs-literal">nil</span>
+ use-short-answers <span class="hljs-literal">nil</span>
+ load-prefer-newer <span class="hljs-literal">t</span>
+ confirm-kill-processes <span class="hljs-literal">nil</span>
+ native-comp-async-report-warnings-errors &#x27;silent
+ help-window-select <span class="hljs-literal">t</span>
+ delete-by-moving-to-trash <span class="hljs-literal">t</span>
+ scroll-preserve-screen-position <span class="hljs-literal">t</span>
+ completions-detailed <span class="hljs-literal">t</span>
+ next-error-message-highlight <span class="hljs-literal">t</span>
+ read-minibuffer-restore-windows <span class="hljs-literal">t</span>)
+
+<span class="hljs-comment">;; Better tab handling.</span>
+(<span class="hljs-name">setq-default</span> indent-tabs-mode <span class="hljs-literal">nil</span>)
+(<span class="hljs-name">setq-default</span> tab-width <span class="hljs-number">4</span>)
+
+<span class="hljs-comment">;; Disable custom file.</span>
+(<span class="hljs-name">setq</span> custom-file (<span class="hljs-name">make-temp-name</span> <span class="hljs-string">&quot;/tmp/&quot;</span>))
+
+(<span class="hljs-name">delete-selection-mode</span> <span class="hljs-literal">t</span>)
+(<span class="hljs-name">savehist-mode</span>)
+
+(<span class="hljs-name">set-charset-priority</span> &#x27;unicode)
+(<span class="hljs-name">prefer-coding-system</span> &#x27;utf-8-unix)
+
+<span class="hljs-comment">;; Disable auto-save &amp; backup files.</span>
+(<span class="hljs-name">setq</span>
+ make-backup-files <span class="hljs-literal">nil</span>
+ auto-save-default <span class="hljs-literal">nil</span>
+ create-lockfiles <span class="hljs-literal">nil</span>)
+
+<span class="hljs-comment">;; Scrolling.</span>
+(<span class="hljs-name">setq</span>
+ scroll-conservatively <span class="hljs-number">101</span>
+ scroll-up-aggressively <span class="hljs-number">0.01</span>
+ scroll-down-aggressively <span class="hljs-number">0.01</span>
+ auto-window-vscroll <span class="hljs-literal">nil</span>)
+
+<span class="hljs-comment">;; Auto bracket closing.</span>
+(<span class="hljs-name">setq</span> electric-pair-preserve-balance <span class="hljs-literal">t</span>
+      electric-pair-open-newline-between-pairs <span class="hljs-literal">t</span>
+      electric-pair-delete-adjacent-pairs <span class="hljs-literal">t</span>)
+
+(<span class="hljs-name">electric-pair-mode</span> <span class="hljs-number">1</span>)
+
+<span class="hljs-comment">;; Remove ui clutter.</span>
+(<span class="hljs-name">toggle-frame-maximized</span>)
+(<span class="hljs-name">menu-bar-mode</span> <span class="hljs-number">-1</span>)
+(<span class="hljs-name">scroll-bar-mode</span> <span class="hljs-number">-1</span>)
+(<span class="hljs-name">if</span> (<span class="hljs-name">eq</span> system-type &#x27;darwin)
+    (<span class="hljs-name">tool-bar-mode</span> <span class="hljs-number">1</span>)
+    (<span class="hljs-name">tool-bar-mode</span> <span class="hljs-number">-1</span>))
+
+<span class="hljs-comment">;; Fira Code is definitely my fav font.</span>
+(<span class="hljs-name">add-to-list</span> &#x27;default-frame-alist &#x27;(font . <span class="hljs-string">&quot;Fira Code 12&quot;</span>))
+(<span class="hljs-name">set-face-attribute</span> &#x27;default <span class="hljs-literal">t</span> <span class="hljs-symbol">:font</span> <span class="hljs-string">&quot;Fira Code 12&quot;</span>)
+
+<span class="hljs-comment">;; Path needs to be set for ocaml-lsp because it doesn&#x27;t work otherwise.</span>
+(<span class="hljs-name">setenv</span> <span class="hljs-string">&quot;PATH&quot;</span>
+        (<span class="hljs-name">concat</span>
+         <span class="hljs-string">&quot;/home/wiljam/.opam/default/bin&quot;</span> path-separator
+         <span class="hljs-string">&quot;/usr/local/sbin&quot;</span> path-separator
+         <span class="hljs-string">&quot;/usr/local/bin&quot;</span> path-separator
+         <span class="hljs-string">&quot;/usr/lib/rustup/bin&quot;</span> path-separator
+         (<span class="hljs-name">getenv</span> <span class="hljs-string">&quot;PATH&quot;</span>)))
+
+<span class="hljs-comment">;; Some visual guides.</span>
+(<span class="hljs-name">require</span> &#x27;hl-line)
+(<span class="hljs-name">add-hook</span> &#x27;prog-mode-hook #&#x27;hl-line-mode)
+
+(<span class="hljs-name">set-face-foreground</span> &#x27;fill-column-indicator <span class="hljs-string">&quot;#202020&quot;</span>)
+(<span class="hljs-name">setq</span> display-fill-column-indicator-column <span class="hljs-number">79</span>)
+(<span class="hljs-name">global-display-fill-column-indicator-mode</span> <span class="hljs-number">1</span>)
+
+(<span class="hljs-name">global-display-line-numbers-mode</span> <span class="hljs-number">1</span>)
+(<span class="hljs-name">setq</span> display-line-numbers-type &#x27;relative)
+
+(<span class="hljs-name">defun</span> wl/disable-line-numbers ()
+  (<span class="hljs-name">display-line-numbers-mode</span> <span class="hljs-number">-1</span>)
+  (<span class="hljs-name">display-fill-column-indicator-mode</span> <span class="hljs-number">-1</span>))
+
+(<span class="hljs-name">use-package</span> highlight-indent-guides
+      <span class="hljs-symbol">:ensure</span> <span class="hljs-literal">t</span>
+      <span class="hljs-symbol">:hook</span>
+      ((<span class="hljs-name">prog-mode</span> text-mode conf-mode) . highlight-indent-guides-mode)
+      <span class="hljs-symbol">:init</span>
+      (<span class="hljs-name">setq</span> highlight-indent-guides-method &#x27;character
+            highlight-indent-guides-auto-enabled <span class="hljs-literal">nil</span>
+            highlight-indent-guides-responsive &#x27;top)
+      <span class="hljs-symbol">:config</span>
+      (<span class="hljs-name">set-face-foreground</span> &#x27;highlight-indent-guides-character-face <span class="hljs-string">&quot;#303030&quot;</span>)
+      (<span class="hljs-name">set-face-foreground</span> &#x27;highlight-indent-guides-top-character-face <span class="hljs-string">&quot;#707070&quot;</span>))
+
+(<span class="hljs-name">add-hook</span> &#x27;after-make-frame-functions #&#x27;highlight-indent-guides-auto-set-faces)
+
+(<span class="hljs-name">highlight-indent-guides-mode</span> <span class="hljs-literal">t</span>)
+
+<span class="hljs-comment">;; Hooks</span>
+(<span class="hljs-name">add-hook</span> &#x27;text-mode-hook #&#x27;wl/disable-line-numbers)
+(<span class="hljs-name">add-hook</span> &#x27;before-save-hook #&#x27;delete-trailing-whitespace)
+(<span class="hljs-name">add-hook</span> &#x27;vterm-mode-hook #&#x27;wl/disable-line-numbers)
+
+(<span class="hljs-name">require</span> &#x27;use-package)
+
+<span class="hljs-comment">;; I can&#x27;t live without evil-mode.</span>
+(<span class="hljs-name">use-package</span> evil
+  <span class="hljs-symbol">:ensure</span> <span class="hljs-literal">t</span>
+  <span class="hljs-symbol">:init</span>
+  (<span class="hljs-name">setq</span> evil-want-integration <span class="hljs-literal">t</span>)
+  (<span class="hljs-name">setq</span> evil-want-keybinding <span class="hljs-literal">nil</span>)
+  <span class="hljs-symbol">:config</span>
+  (<span class="hljs-name">evil-mode</span>))
+(<span class="hljs-name">use-package</span> evil-collection
+  <span class="hljs-symbol">:after</span> evil
+  <span class="hljs-symbol">:ensure</span> <span class="hljs-literal">t</span>
+  <span class="hljs-symbol">:config</span>
+  (<span class="hljs-name">evil-collection-init</span>))
+
+(<span class="hljs-name">use-package</span> projectile
+  <span class="hljs-symbol">:ensure</span> <span class="hljs-literal">t</span>
+  <span class="hljs-symbol">:config</span>
+  (<span class="hljs-name">projectile-mode</span> <span class="hljs-number">+1</span>))
+
+<span class="hljs-comment">;; Language Support.</span>
+(<span class="hljs-name">use-package</span> tuareg
+  <span class="hljs-symbol">:ensure</span> <span class="hljs-literal">t</span>)
+
+(<span class="hljs-name">use-package</span> go-mode
+  <span class="hljs-symbol">:ensure</span> <span class="hljs-literal">t</span>
+  <span class="hljs-symbol">:config</span>
+  (<span class="hljs-name">add-to-list</span> &#x27;exec-path <span class="hljs-string">&quot;/home/wiljam/go/bin&quot;</span>))
+
+(<span class="hljs-name">use-package</span> kotlin-mode
+  <span class="hljs-symbol">:ensure</span> <span class="hljs-literal">t</span>)
+
+<span class="hljs-comment">;; Tree-Sitter doesn&#x27;t work with kotlin and I don&#x27;t care enough to fix it properly.</span>
+(<span class="hljs-name">add-hook</span> &#x27;kotlin-mode-hook
+          #&#x27;(lambda ()
+              (tree-sitter-mode <span class="hljs-number">-1</span>)))
+
+(<span class="hljs-name">use-package</span> haskell-mode
+  <span class="hljs-symbol">:ensure</span> <span class="hljs-literal">t</span>)
+
+(<span class="hljs-name">use-package</span> tree-sitter
+  <span class="hljs-symbol">:ensure</span> <span class="hljs-literal">t</span>
+  <span class="hljs-symbol">:config</span>
+  (<span class="hljs-name">global-tree-sitter-mode</span>)
+  (<span class="hljs-name">add-hook</span> &#x27;tree-sitter-after-on-hook #&#x27;tree-sitter-hl-mode))
+(<span class="hljs-name">use-package</span> tree-sitter-langs
+  <span class="hljs-symbol">:ensure</span> <span class="hljs-literal">t</span>)
+(<span class="hljs-name">use-package</span> tree-sitter-indent
+  <span class="hljs-symbol">:ensure</span> <span class="hljs-literal">t</span>)
+
+<span class="hljs-comment">;; LSP</span>
+(<span class="hljs-name">use-package</span> eglot
+  <span class="hljs-symbol">:ensure</span> <span class="hljs-literal">t</span>
+  <span class="hljs-symbol">:hook</span>
+  <span class="hljs-comment">;; Do I need to tell you for what languages these are?</span>
+  (<span class="hljs-name">c-mode</span> . eglot-ensure)
+  (<span class="hljs-name">c++-mode</span> . eglot-ensure)
+  (<span class="hljs-name">python-mode</span> . eglot-ensure)
+  (<span class="hljs-name">js-mode</span> . eglot-ensure)
+  (<span class="hljs-name">go-mode</span> . eglot-ensure)
+  (<span class="hljs-name">kotlin-mode</span> . eglot-ensure)
+  (<span class="hljs-name">haskell-mode</span> . eglot-ensure)
+
+  <span class="hljs-comment">;; OCaml Support</span>
+  (<span class="hljs-name">tuareg-mode</span> . eglot-ensure))
+
+(<span class="hljs-name">defun</span> wl/eglot-config ()
+  (<span class="hljs-name">eglot-inlay-hints-mode</span> <span class="hljs-number">-1</span>)
+  (<span class="hljs-name">setq</span>
+   eglot-ignored-server-capabilities &#x27;(<span class="hljs-symbol">:documentHighlightProvider</span>)
+   eldoc-echo-area-use-multiline-p <span class="hljs-literal">nil</span>))
+
+(<span class="hljs-name">add-hook</span> &#x27;eglot-managed-mode-hook #&#x27;wl/eglot-config)
+
+(<span class="hljs-name">use-package</span> company
+  <span class="hljs-symbol">:ensure</span> <span class="hljs-literal">t</span>
+  <span class="hljs-symbol">:hook</span>
+  (<span class="hljs-name">after-init</span> . global-company-mode))
+
+<span class="hljs-comment">;; Search should be fuzzy by default.</span>
+(<span class="hljs-name">use-package</span> orderless
+  <span class="hljs-symbol">:ensure</span> <span class="hljs-literal">t</span>
+  <span class="hljs-symbol">:init</span>
+  (<span class="hljs-name">setq</span> completion-styles &#x27;(orderless basic)
+        completion-category-defaults <span class="hljs-literal">nil</span>
+        completion-category-overrides &#x27;((file (styles partial-completion)))))
+
+(<span class="hljs-name">use-package</span> vertico
+  <span class="hljs-symbol">:ensure</span> <span class="hljs-literal">t</span>
+  <span class="hljs-symbol">:init</span>
+  (<span class="hljs-name">vertico-mode</span>))
+
+<span class="hljs-comment">;; Some nice theming.</span>
+(<span class="hljs-name">use-package</span> gruber-darker-theme
+  <span class="hljs-symbol">:ensure</span> <span class="hljs-literal">t</span>)
+
+(<span class="hljs-name">use-package</span> fleetish-theme
+  <span class="hljs-symbol">:ensure</span> <span class="hljs-literal">t</span>)
+
+(<span class="hljs-name">load-theme</span> &#x27;gruber-darker <span class="hljs-literal">t</span>)
+
+<span class="hljs-comment">;; And some nice visuals.</span>
+(<span class="hljs-name">use-package</span> all-the-icons
+  <span class="hljs-symbol">:ensure</span> <span class="hljs-literal">t</span>)
+
+(<span class="hljs-name">use-package</span> doom-modeline
+  <span class="hljs-symbol">:ensure</span> <span class="hljs-literal">t</span>
+  <span class="hljs-symbol">:init</span> (<span class="hljs-name">doom-modeline-mode</span> <span class="hljs-number">1</span>))
+
+(<span class="hljs-name">use-package</span> neotree
+  <span class="hljs-symbol">:ensure</span> <span class="hljs-literal">t</span>
+  <span class="hljs-symbol">:config</span>
+  (<span class="hljs-name">setq</span> neo-theme (<span class="hljs-name">if</span> (<span class="hljs-name">display-graphic-p</span>) &#x27;icons &#x27;arrow)))
+
+(<span class="hljs-name">use-package</span> which-key
+  <span class="hljs-symbol">:ensure</span> <span class="hljs-literal">t</span>
+  <span class="hljs-symbol">:config</span>
+  (<span class="hljs-name">which-key-mode</span>))
+
+(<span class="hljs-name">use-package</span> helpful
+  <span class="hljs-symbol">:ensure</span> <span class="hljs-literal">t</span>)
+
+<span class="hljs-comment">;; I think editorconfig should become standard in all open-source projects.</span>
+(<span class="hljs-name">use-package</span> editorconfig
+  <span class="hljs-symbol">:ensure</span> <span class="hljs-literal">t</span>
+  <span class="hljs-symbol">:config</span>
+  (<span class="hljs-name">editorconfig-mode</span> <span class="hljs-number">1</span>))
+
+<span class="hljs-comment">;; Keybindings</span>
+(<span class="hljs-name">defun</span> wl/keymap (<span class="hljs-name">key</span> fun)
+  (<span class="hljs-name">define-key</span> evil-normal-state-map (<span class="hljs-name">kbd</span> key) fun))
+
+(<span class="hljs-name">wl/keymap</span> <span class="hljs-string">&quot;SPC f p&quot;</span>
+           #&#x27;(lambda ()
+               (interactive)
+               (find-file <span class="hljs-string">&quot;~/.config/emacs&quot;</span>)))
+
+(<span class="hljs-name">wl/keymap</span> <span class="hljs-string">&quot;SPC f n&quot;</span>
+           #&#x27;(lambda ()
+               (interactive)
+               (find-file <span class="hljs-string">&quot;~/Programming/w-garden/content&quot;</span>)))
+
+(<span class="hljs-name">wl/keymap</span> <span class="hljs-string">&quot;SPC p&quot;</span> &#x27;projectile-command-map)
+(<span class="hljs-name">wl/keymap</span> <span class="hljs-string">&quot;SPC SPC&quot;</span> &#x27;projectile-find-file)
+
+(<span class="hljs-name">wl/keymap</span> <span class="hljs-string">&quot;SPC `&quot;</span> &#x27;vterm)
+
+(<span class="hljs-name">wl/keymap</span> <span class="hljs-string">&quot;SPC h f&quot;</span> &#x27;helpful-callable)
+(<span class="hljs-name">wl/keymap</span> <span class="hljs-string">&quot;SPC h v&quot;</span> &#x27;helpful-variable)
+(<span class="hljs-name">wl/keymap</span> <span class="hljs-string">&quot;SPC h k&quot;</span> &#x27;helpful-key)
+(<span class="hljs-name">wl/keymap</span> <span class="hljs-string">&quot;SPC h x&quot;</span> &#x27;helpful-command)
+
+(<span class="hljs-name">wl/keymap</span> <span class="hljs-string">&quot;SPC m m&quot;</span> &#x27;markdown-toggle-markup-hiding)
+
+(<span class="hljs-name">wl/keymap</span> <span class="hljs-string">&quot;SPC t&quot;</span> &#x27;neotree-toggle)
+
+<span class="hljs-comment">;; Org &amp; Markdown</span>
+(<span class="hljs-name">eval-after-load</span> <span class="hljs-string">&quot;org&quot;</span>
+  &#x27;(require &#x27;ox-md nil t))
+
+(<span class="hljs-name">use-package</span> markdown-mode
+  <span class="hljs-symbol">:ensure</span> <span class="hljs-literal">t</span>
+  <span class="hljs-symbol">:init</span>
+  (<span class="hljs-name">setq</span> markdown-command <span class="hljs-string">&quot;multimarkdown&quot;</span>)
+  (<span class="hljs-name">setq-default</span> markdown-hide-markup <span class="hljs-literal">t</span>)
+  <span class="hljs-symbol">:config</span>
+  (<span class="hljs-name">setq</span> markdown-enable-wiki-links <span class="hljs-literal">t</span>
+        markdown-hide-markup <span class="hljs-literal">t</span>
+        markdown-fontify-code-blocks-natively <span class="hljs-literal">t</span>
+        markdown-enable-highlighting-syntax <span class="hljs-literal">t</span>
+        markdown-hide-urls <span class="hljs-literal">t</span>))
+
+<span class="hljs-comment">;; Just to center the text</span>
+(<span class="hljs-name">use-package</span> visual-fill-column
+  <span class="hljs-symbol">:ensure</span> <span class="hljs-literal">t</span>
+  <span class="hljs-symbol">:init</span>
+  (<span class="hljs-name">setq-default</span> visual-fill-column-center-text <span class="hljs-literal">t</span>
+                visual-fill-column-width <span class="hljs-number">100</span>))
+
+(<span class="hljs-name">defun</span> wl/prepare-text-mode ()
+  (<span class="hljs-name">visual-fill-column-mode</span>))
+
+<span class="hljs-comment">;(set-face-font &#x27;markdown-header-face &quot;Source Serif Pro 17&quot;)</span>
+
+(<span class="hljs-name">add-hook</span> &#x27;text-mode-hook &#x27;wl/prepare-text-mode)
+
+<span class="hljs-comment">;; RSS &amp; Email</span>
+(<span class="hljs-name">use-package</span> elfeed
+  <span class="hljs-symbol">:ensure</span> <span class="hljs-literal">t</span>
+  <span class="hljs-symbol">:config</span>
+  (<span class="hljs-name">setq</span> elfeed-feeds
+        <span class="hljs-comment">;; my own digital garden site feed</span>
+        &#x27;(<span class="hljs-string">&quot;https://wiljam144.github.io/digital-garden/rss.xml&quot;</span>)))
+
+(<span class="hljs-name">require</span> &#x27;mu4e)
+
+(<span class="hljs-name">add-hook</span> &#x27;mu4e-compose-pre-hook (<span class="hljs-name">lambda</span> () (<span class="hljs-name">display-line-numbers-mode</span> <span class="hljs-number">-1</span>)))
+(<span class="hljs-name">setq</span> mail-user-agent &#x27;mu4e-user-agent)
+(<span class="hljs-name">setq</span> mu4e-drafts-folder <span class="hljs-string">&quot;/[Gmail].Drafts&quot;</span>)
+(<span class="hljs-name">setq</span> mu4e-sent-folder <span class="hljs-string">&quot;/[Gmail].Sent Mail&quot;</span>)
+(<span class="hljs-name">setq</span> mu4e-trash-folder <span class="hljs-string">&quot;/[Gmail].Trash&quot;</span>)
+(<span class="hljs-name">setq</span> mu4e-attachment-dir <span class="hljs-string">&quot;~/Downloads&quot;</span>)
+
+(<span class="hljs-name">setq</span> mu4e-sent-messages-behavior &#x27;delete)
+
+(<span class="hljs-name">setq</span> mu4e-get-mail-command <span class="hljs-string">&quot;offlineimap&quot;</span>)
+(<span class="hljs-name">setq</span> mu4e-update-interval (<span class="hljs-name">*</span> <span class="hljs-number">10</span> <span class="hljs-number">60</span> <span class="hljs-number">60</span>))
+
+(<span class="hljs-name">setq</span> user-mail-address wl/mail)
+
+(<span class="hljs-name">setq</span>
+    user-mail-address wl/mail
+    user-full-name wl/name
+    mu4e-compose-signature
+    (<span class="hljs-name">concat</span>
+     wl/name
+     <span class="hljs-string">&quot;\n&quot;</span>
+     wl/website))
+
+(<span class="hljs-name">require</span> &#x27;smtpmail)
+(<span class="hljs-name">setq</span> message-send-mail-function &#x27;smtpmail-send-it
+      starttls-use-gnutls <span class="hljs-literal">t</span>
+      smtpmail-starttls-credentials &#x27;((<span class="hljs-string">&quot;smtp.gmail.com&quot;</span> <span class="hljs-number">465</span> <span class="hljs-literal">nil</span> <span class="hljs-literal">nil</span>))
+      smtpmail-auth-credentials
+        &#x27;((<span class="hljs-string">&quot;smtp.gmail.com&quot;</span> <span class="hljs-number">465</span> <span class="hljs-literal">nil</span> <span class="hljs-literal">nil</span>))
+      smtpmail-stream-type &#x27;ssl
+      smtpmail-default-smtp-server <span class="hljs-string">&quot;smtp.gmail.com&quot;</span>
+      smtpmail-smtp-server <span class="hljs-string">&quot;smtp.gmail.com&quot;</span>
+      smtpmail-smtp-service <span class="hljs-number">465</span>
+      smtpmail-debug-info <span class="hljs-literal">t</span>)
+
+<span class="hljs-comment">;; Ligature support</span>
+(<span class="hljs-name">use-package</span> ligature
+  <span class="hljs-symbol">:ensure</span> <span class="hljs-literal">t</span>
+  <span class="hljs-symbol">:config</span>
+  <span class="hljs-comment">;; Enable the &quot;www&quot; ligature in every possible major mode</span>
+  (<span class="hljs-name">ligature-set-ligatures</span> &#x27;t &#x27;(<span class="hljs-string">&quot;www&quot;</span>))
+  <span class="hljs-comment">;; Enable traditional ligature support in eww-mode, if the</span>
+  <span class="hljs-comment">;; `variable-pitch&#x27; face supports it</span>
+  (<span class="hljs-name">ligature-set-ligatures</span> &#x27;eww-mode &#x27;(<span class="hljs-string">&quot;ff&quot;</span> <span class="hljs-string">&quot;fi&quot;</span> <span class="hljs-string">&quot;ffi&quot;</span>))
+  <span class="hljs-comment">;; Enable all Cascadia and Fira Code ligatures in programming modes</span>
+  (<span class="hljs-name">ligature-set-ligatures</span> &#x27;prog-mode
+                        &#x27;(;; == === ==== =&gt; =| =&gt;&gt;=&gt;=|=&gt;==&gt;&gt; ==&lt; =/=//=// =~
+                          ;; =<span class="hljs-symbol">:=</span> =!=
+                          (<span class="hljs-string">&quot;=&quot;</span> (rx (+ (or <span class="hljs-string">&quot;&gt;&quot;</span> <span class="hljs-string">&quot;&lt;&quot;</span> <span class="hljs-string">&quot;|&quot;</span> <span class="hljs-string">&quot;/&quot;</span> <span class="hljs-string">&quot;~&quot;</span> <span class="hljs-string">&quot;:&quot;</span> <span class="hljs-string">&quot;!&quot;</span> <span class="hljs-string">&quot;=&quot;</span>))))
+                          ;; ;; ;;;
+                          (<span class="hljs-string">&quot;;&quot;</span> (rx (+ <span class="hljs-string">&quot;;&quot;</span>)))
+                          ;; <span class="hljs-symbol">&amp;&amp;</span> <span class="hljs-symbol">&amp;&amp;&amp;</span>
+                          (<span class="hljs-string">&quot;&amp;&quot;</span> (rx (+ <span class="hljs-string">&quot;&amp;&quot;</span>)))
+                          ;; !! !!! !. !: !!. != !== !~
+                          (<span class="hljs-string">&quot;!&quot;</span> (rx (+ (or <span class="hljs-string">&quot;=&quot;</span> <span class="hljs-string">&quot;!&quot;</span> <span class="hljs-string">&quot;\.&quot;</span> <span class="hljs-string">&quot;:&quot;</span> <span class="hljs-string">&quot;~&quot;</span>))))
+                          ;; ?? ??? ?:  ?=  ?.
+                          (<span class="hljs-string">&quot;?&quot;</span> (rx (or <span class="hljs-string">&quot;:&quot;</span> <span class="hljs-string">&quot;=&quot;</span> <span class="hljs-string">&quot;\.&quot;</span> (+ <span class="hljs-string">&quot;?&quot;</span>))))
+                          ;; %% %%%
+                          (<span class="hljs-string">&quot;%&quot;</span> (rx (+ <span class="hljs-string">&quot;%&quot;</span>)))
+                          ;; |&gt; ||&gt; |||&gt; ||||&gt; |] |} || ||| |-&gt; ||-||
+                          ;; |-&gt;&gt;-||-&lt;&lt;-| |- |== ||=||
+                          ;; |==&gt;&gt;==&lt;&lt;==&lt;=&gt;==//==/=!==<span class="hljs-symbol">:===&gt;</span>
+                          (<span class="hljs-string">&quot;|&quot;</span> (rx (+ (or <span class="hljs-string">&quot;&gt;&quot;</span> <span class="hljs-string">&quot;&lt;&quot;</span> <span class="hljs-string">&quot;|&quot;</span> <span class="hljs-string">&quot;/&quot;</span> <span class="hljs-string">&quot;:&quot;</span> <span class="hljs-string">&quot;!&quot;</span> <span class="hljs-string">&quot;}&quot;</span> <span class="hljs-string">&quot;\]&quot;</span>
+                                          <span class="hljs-string">&quot;-&quot;</span> <span class="hljs-string">&quot;=&quot;</span> ))))
+                          ;; \\ \\\ \/
+                          (<span class="hljs-string">&quot;\\&quot;</span> (rx (or <span class="hljs-string">&quot;/&quot;</span> (+ <span class="hljs-string">&quot;\\&quot;</span>))))
+                          ;; ++ +++ ++++ +&gt;
+                          (<span class="hljs-string">&quot;+&quot;</span> (rx (or <span class="hljs-string">&quot;&gt;&quot;</span> (+ <span class="hljs-string">&quot;+&quot;</span>))))
+                          ;; :: ::: :::: <span class="hljs-symbol">:&gt;</span> <span class="hljs-symbol">:&lt;</span> <span class="hljs-symbol">:=</span> <span class="hljs-symbol">://</span> :<span class="hljs-symbol">:=</span>
+                          (<span class="hljs-string">&quot;:&quot;</span> (rx (or <span class="hljs-string">&quot;&gt;&quot;</span> <span class="hljs-string">&quot;&lt;&quot;</span> <span class="hljs-string">&quot;=&quot;</span> <span class="hljs-string">&quot;//&quot;</span> <span class="hljs-string">&quot;:=&quot;</span> (+ <span class="hljs-string">&quot;:&quot;</span>))))
+                          ;; // /// //// /\ /* /&gt; /===<span class="hljs-symbol">:===!=//===&gt;&gt;==&gt;==/</span>
+                          (<span class="hljs-string">&quot;/&quot;</span> (rx (+ (or <span class="hljs-string">&quot;&gt;&quot;</span>  <span class="hljs-string">&quot;&lt;&quot;</span> <span class="hljs-string">&quot;|&quot;</span> <span class="hljs-string">&quot;/&quot;</span> <span class="hljs-string">&quot;\\&quot;</span> <span class="hljs-string">&quot;\*&quot;</span> <span class="hljs-string">&quot;:&quot;</span> <span class="hljs-string">&quot;!&quot;</span>
+                                          <span class="hljs-string">&quot;=&quot;</span>))))
+                          ;; .. ... .... .= .- .? ..= ..&lt;
+                          (<span class="hljs-string">&quot;\.&quot;</span> (rx (or <span class="hljs-string">&quot;=&quot;</span> <span class="hljs-string">&quot;-&quot;</span> <span class="hljs-string">&quot;\?&quot;</span> <span class="hljs-string">&quot;\.=&quot;</span> <span class="hljs-string">&quot;\.&lt;&quot;</span> (+ <span class="hljs-string">&quot;\.&quot;</span>))))
+                          ;; -- --- ---- -~ -&gt; -&gt;&gt; -| -|-&gt;--&gt;&gt;-&gt;--&lt;&lt;-|
+                          (<span class="hljs-string">&quot;-&quot;</span> (rx (+ (or <span class="hljs-string">&quot;&gt;&quot;</span> <span class="hljs-string">&quot;&lt;&quot;</span> <span class="hljs-string">&quot;|&quot;</span> <span class="hljs-string">&quot;~&quot;</span> <span class="hljs-string">&quot;-&quot;</span>))))
+                          ;; *&gt; */ *)  ** *** ****
+                          (<span class="hljs-string">&quot;*&quot;</span> (rx (or <span class="hljs-string">&quot;&gt;&quot;</span> <span class="hljs-string">&quot;/&quot;</span> <span class="hljs-string">&quot;)&quot;</span> (+ <span class="hljs-string">&quot;*&quot;</span>))))
+                          ;; www wwww
+                          (<span class="hljs-string">&quot;w&quot;</span> (rx (+ <span class="hljs-string">&quot;w&quot;</span>)))
+                          ;; &lt;&gt; &lt;!-- &lt;|&gt; &lt;: &lt;~ &lt;~&gt; &lt;~~ &lt;+ &lt;* &lt;$ &lt;/  &lt;+&gt; &lt;*&gt;
+                          ;; &lt;{{content}}gt; &lt;/&gt; &lt;|  &lt;||  &lt;||| &lt;|||| &lt;- &lt;-| &lt;-&lt;&lt;-|-&gt; &lt;-&gt;&gt;
+                          ;; &lt;&lt;-&gt; &lt;= &lt;=&gt; &lt;&lt;==&lt;&lt;==&gt;=|=&gt;==/==//=!==<span class="hljs-symbol">:=&gt;</span>
+                          ;; &lt;&lt; &lt;&lt;&lt; &lt;&lt;&lt;&lt;
+                          (<span class="hljs-string">&quot;&lt;&quot;</span> (rx (+ (or <span class="hljs-string">&quot;\+&quot;</span> <span class="hljs-string">&quot;\*&quot;</span> <span class="hljs-string">&quot;\{{content}}quot;</span> <span class="hljs-string">&quot;&lt;&quot;</span> <span class="hljs-string">&quot;&gt;&quot;</span> <span class="hljs-string">&quot;:&quot;</span> <span class="hljs-string">&quot;~&quot;</span>  <span class="hljs-string">&quot;!&quot;</span>
+                                          <span class="hljs-string">&quot;-&quot;</span>  <span class="hljs-string">&quot;/&quot;</span> <span class="hljs-string">&quot;|&quot;</span> <span class="hljs-string">&quot;=&quot;</span>))))
+                          ;; &gt;: &gt;- &gt;&gt;- &gt;--|-&gt; &gt;&gt;-|-&gt; &gt;= &gt;== &gt;&gt;== &gt;=|=<span class="hljs-symbol">:=&gt;&gt;</span>
+                          ;; &gt;&gt; &gt;&gt;&gt; &gt;&gt;&gt;&gt;
+                          (<span class="hljs-string">&quot;&gt;&quot;</span> (rx (+ (or <span class="hljs-string">&quot;&gt;&quot;</span> <span class="hljs-string">&quot;&lt;&quot;</span> <span class="hljs-string">&quot;|&quot;</span> <span class="hljs-string">&quot;/&quot;</span> <span class="hljs-string">&quot;:&quot;</span> <span class="hljs-string">&quot;=&quot;</span> <span class="hljs-string">&quot;-&quot;</span>))))
+                          ;; #: #= #! #( #? #[ #{ #_ #_( ## ### #####
+                          (<span class="hljs-string">&quot;#&quot;</span> (rx (or <span class="hljs-string">&quot;:&quot;</span> <span class="hljs-string">&quot;=&quot;</span> <span class="hljs-string">&quot;!&quot;</span> <span class="hljs-string">&quot;(&quot;</span> <span class="hljs-string">&quot;\?&quot;</span> <span class="hljs-string">&quot;\[&quot;</span> <span class="hljs-string">&quot;{&quot;</span> <span class="hljs-string">&quot;_(&quot;</span> <span class="hljs-string">&quot;_&quot;</span>
+                                       (+ <span class="hljs-string">&quot;#&quot;</span>))))
+                          ;; ~~ ~~~ ~=  ~-  ~@ ~&gt; ~~&gt;
+                          (<span class="hljs-string">&quot;~&quot;</span> (rx (or <span class="hljs-string">&quot;&gt;&quot;</span> <span class="hljs-string">&quot;=&quot;</span> <span class="hljs-string">&quot;-&quot;</span> <span class="hljs-string">&quot;@&quot;</span> <span class="hljs-string">&quot;~&gt;&quot;</span> (+ <span class="hljs-string">&quot;~&quot;</span>))))
+                          ;; __ ___ ____ _|_ __|____|_
+                          (<span class="hljs-string">&quot;_&quot;</span> (rx (+ (or <span class="hljs-string">&quot;_&quot;</span> <span class="hljs-string">&quot;|&quot;</span>))))
+                          ;; Fira code: <span class="hljs-number">0</span>xFF <span class="hljs-number">0</span>x12
+                          (<span class="hljs-string">&quot;0&quot;</span> (rx (and <span class="hljs-string">&quot;x&quot;</span> (+ (in <span class="hljs-string">&quot;A-F&quot;</span> <span class="hljs-string">&quot;a-f&quot;</span> <span class="hljs-string">&quot;0-9&quot;</span>)))))
+                          ;; Fira code:
+                          <span class="hljs-string">&quot;Fl&quot;</span>  <span class="hljs-string">&quot;Tl&quot;</span>  <span class="hljs-string">&quot;fi&quot;</span>  <span class="hljs-string">&quot;fj&quot;</span>  <span class="hljs-string">&quot;fl&quot;</span>  <span class="hljs-string">&quot;ft&quot;</span>
+                          ;; The few not covered by the regexps.
+                          <span class="hljs-string">&quot;{|&quot;</span>  <span class="hljs-string">&quot;[|&quot;</span>  <span class="hljs-string">&quot;]#&quot;</span>  <span class="hljs-string">&quot;(*&quot;</span>  <span class="hljs-string">&quot;}#&quot;</span>  <span class="hljs-string">&quot;{{content}}gt;&quot;</span>  <span class="hljs-string">&quot;^=&quot;</span>))
+  ;; Enables ligature checks globally in all buffers. You can also do it
+  ;; per mode with `ligature-mode&#x27;.
+  (global-ligature-mode <span class="hljs-literal">t</span>))
+</code></pre>
+        </div>
+    </div>
+
+    <script defer src="/digital-garden/static/post.js"></script>
+</body>
+</html>
