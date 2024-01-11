@@ -1,5 +1,9 @@
 # Changelog
 
+## November 2024
+
+- Added Workflow page.
+
 ## December 2023
 
 - Wrote & Added Setup page.
