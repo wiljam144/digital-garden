@@ -1,7 +1,9 @@
 # Changelog
 
-## November 2024
+## January 2024
 
+- Changed caret color in the search bar.
+- Added custom text selection colors.
 - Added Workflow page.
 
 ## December 2023
