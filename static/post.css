@@ -46,6 +46,15 @@ html {
     scrollbar-width: none;  /* Firefox */
 }
 
+::selection {
+    color: var(--background);
+    background-color: var(--foreground);
+}
+::-moz-selection {
+    color: var(--background);
+    background-color: var(--foreground);
+}
+
 h1, h2, h3, h4, h5, h6 {
     width: 100%;
 
@@ -236,6 +245,8 @@ code::-webkit-scrollbar-button {
 
     font-family: var(--serif-font-stack);
     font-size: 1.4rem;
+
+    caret-color: var(--foreground);
 }
 
 #search-input:focus {
