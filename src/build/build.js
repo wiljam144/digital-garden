@@ -1,5 +1,7 @@
 import fs from "fs";
 
+import { compile } from "figurescript";
+
 import { compile_markdown } from "./compiler.js";
 import { generate_file_map } from "./crawler.js";
 import { create_sitemap } from "./navigation.js";
@@ -24,13 +26,18 @@ function fill_template(content, title) {
 }
 
 function build_markdown(key, value, files, preprocessors, transformers) {
-    for (preprocessor of preprocessors) {
+    for (let preprocessor of preprocessors) {
         value.content = preprocessor(value.content);
     }
 
+    const figurescriptRegex = /%%(.*?)%%/gs;
+    value.content = value.content.replace(figurescriptRegex, (_, group) => {
+        return compile(group);
+    });
+
     let html = compile_markdown(value.content, files, "./build");
-    for (transformer of transformers) {
-        html = transfromer(html);
+    for (let transformer of transformers) {
+        html = transformer(html);
     }
 
     const dir = "./build/" + value.path.split("/").slice(0, -1).join("/");

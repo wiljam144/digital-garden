@@ -5,4 +5,4 @@ they are presented here.
 
 - Add a source code file displayer (Complete).
 - Add an interactive graph (Not Complete).
-- Add tags & YAML properties parser to the build step.
+- Add tags & YAML properties parser to the build step (Not Complete).

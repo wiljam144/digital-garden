@@ -12,7 +12,7 @@ jobs:
       - name: Check Out
         uses: actions/checkout@v1
 
-      - name: Update apt
+      - name: Update apt repos
         run: sudo apt update
 
       - name: install nodejs

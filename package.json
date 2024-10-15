@@ -3,10 +3,11 @@
     "scripts": {
         "validate": "node ./src/build/validation/validation.js",
         "build": "node ./src/build/main.js",
-        "start": "cd build && python -m http.server",
+        "start": "cd build && python3 ../scripts/test.py",
         "dev": "npm run build && npm run start"
     },
     "dependencies": {
+        "figurescript": "^0.2.4",
         "highlight.js": "^11.9.0",
         "marked": "^11.1.0",
         "marked-highlight": "^2.1.0",
